@@ -49,6 +49,11 @@ public class ConsoleUtils {
     public static final String c_purple(String message) {
         return C_PURPLE + message + C_RESET;
     }
+
+    public static final String c_red(String message) {
+        return C_RED + message + C_RESET;
+    }
+
     public static String promptForString(String prompt) {
         Scanner myObj = new Scanner(System.in);
         System.out.print(prompt);
@@ -83,7 +88,7 @@ public class ConsoleUtils {
         }*/
 
         // just print 50 empty lines ...
-        //for (int i = 0; i< 50; i++) System.out.println();
+        for (int i = 0; i< 50; i++) System.out.println();
     }
 
     public static void printDebug(String msg) {

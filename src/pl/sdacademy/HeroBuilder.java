@@ -4,10 +4,28 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import static pl.sdacademy.ConsoleUtils.*;
+import static pl.sdacademy.Sex.*;
+
+/**
+ * Singleton class because only one hero builder can exist
+ *
+ */
 
 public class HeroBuilder {
 
-    public static int skillPoints = 100;
+    private static HeroBuilder Instance;
+
+    private HeroBuilder(){
+    }
+
+    public static HeroBuilder getInstance() {
+        if (Instance == null) {
+           Instance = new HeroBuilder();
+        }
+            return Instance;
+        }
+
+    private static int skillPoints = 100;
 
     // delete me - ideally - use stub to pass as a parameter - in future reading player builds configs from files etc...
     public Hero buildHeroForTesting() {
@@ -21,17 +39,17 @@ public class HeroBuilder {
 
         String name = promptForString("Enter character name> ");
         String sexInput = promptForString("Enter character sex [M]ale, [F]emale, [O]ther> ");
-        String sexSafeInput = sexInput.toLowerCase();
+        String lowerCaseInput = sexInput.toLowerCase();
 
-        Sex sex = null;
-
-        switch (sexSafeInput) {
+        Sex sex;
+        // Ustawia zmienną sex na male, female lub other zaczytując z konsoli
+        switch (lowerCaseInput) {
             case "m":
             case "ma":
             case "mal":
             case "male":
-                printDebug("male");
-                sex = Sex.MALE;
+                printDebug("selected male");
+                sex = MALE;
                 break;
             case "f":
             case "fe":
@@ -39,8 +57,8 @@ public class HeroBuilder {
             case "fema":
             case "femal":
             case "female":
-                printDebug("female!");
-                sex = Sex.valueOf("FEMALE");
+                printDebug("selected female!");
+                sex = FEMALE;
                 break;
             case "o":
             case "ot":
@@ -48,8 +66,8 @@ public class HeroBuilder {
             case "othe":
             case "other":
             default:
-                printDebug("other");
-                sex = Sex.OTHER;
+                printDebug("selected other");
+                sex = OTHER;
                 break;
         }
 
@@ -73,7 +91,7 @@ public class HeroBuilder {
                     "[6] charisma:     " + charisma +     "\n\n" +
                     "[anything else] exit"
             );
-            int choice = promptForInt("> ");
+            int choice = promptForInt("Please input a number> ");
             switch (choice) {
                 case 1: strength = readSkillValueFor("strength", strength); break;
                 case 2: stamina = readSkillValueFor("stamina", stamina); break;
@@ -86,7 +104,7 @@ public class HeroBuilder {
                     if(skillPoints == 0 && allStatFieldsSet) {
                         exit = true;
                     } else {
-                        promptForString("You have some points to set - remember that stats cannot be 0");
+                        promptForString("You have some points to set - remember that stats cannot be 0\n PRESS ENTER TO CONITNUE");
                     }
             }
         } while (!exit);
