@@ -82,30 +82,46 @@ public class HeroBuilder {
 
         do {
             clearScreen();
-            System.out.println("Skill points left: " + skillPoints + "\n" +
-                    "[1] strength:     " + strength +     "\n" +
-                    "[2] stamina:      " + stamina +      "\n" +
-                    "[3] dexterity:    " + dexterity +    "\n" +
+            System.out.println("\nSkill points left: " + skillPoints + "\n\n" +
+                    "[1] strength:     " + strength + "\n" +
+                    "[2] stamina:      " + stamina + "\n" +
+                    "[3] dexterity:    " + dexterity + "\n" +
                     "[4] intelligence: " + intelligence + "\n" +
-                    "[5] wisdom:       " + wisdom +       "\n" +
-                    "[6] charisma:     " + charisma +     "\n\n" +
-                    "[anything else] exit"
+                    "[5] wisdom:       " + wisdom + "\n" +
+                    "[6] charisma:     " + charisma + "\n\n"
             );
-            int choice = promptForInt("Please input a number> ");
-            switch (choice) {
-                case 1: strength = readSkillValueFor("strength", strength); break;
-                case 2: stamina = readSkillValueFor("stamina", stamina); break;
-                case 3: dexterity = readSkillValueFor("dexterity", dexterity); break;
-                case 4: intelligence = readSkillValueFor("intelligence", intelligence); break;
-                case 5: wisdom = readSkillValueFor("wisdom", wisdom); break;
-                case 6: charisma = readSkillValueFor("charisma", charisma); break;
-                default:
-                    boolean allStatFieldsSet = strength > 0 && stamina > 0 && dexterity > 0 && intelligence > 0 && wisdom > 0 && charisma > 0;
-                    if(skillPoints == 0 && allStatFieldsSet) {
-                        exit = true;
-                    } else {
-                        promptForString("You have some points to set - remember that stats cannot be 0\n PRESS ENTER TO CONITNUE");
-                    }
+            Boolean allStatFieldsSet =
+                            strength        > 0 &&
+                            stamina         > 0 &&
+                            dexterity       > 0 &&
+                            intelligence    > 0 &&
+                            wisdom          > 0 &&
+                            charisma        > 0;
+            if (skillPoints == 0 && allStatFieldsSet) {
+                exit = true;
+            } else {
+                int choice = promptForInt("Choose number of the skill and press Enter\n...: ");
+                switch (choice) {
+                    case 1:
+                        strength = readSkillValueFor("strength", strength);
+                        break;
+                    case 2:
+                        stamina = readSkillValueFor("stamina", stamina);
+                        break;
+                    case 3:
+                        dexterity = readSkillValueFor("dexterity", dexterity);
+                        break;
+                    case 4:
+                        intelligence = readSkillValueFor("intelligence", intelligence);
+                        break;
+                    case 5:
+                        wisdom = readSkillValueFor("wisdom", wisdom);
+                        break;
+                    case 6:
+                        charisma = readSkillValueFor("charisma", charisma);
+                        break;
+                    default:
+                }
             }
         } while (!exit);
 

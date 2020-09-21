@@ -11,7 +11,7 @@ public class Main {
         HeroBuilder hb = HeroBuilder.getInstance();
 
 
-        Hero hero = hb.buildHeroForTesting();//hb.buildHero();
+        Hero hero = hb.buildHero();//hb.buildHeroForTesting();//hb.buildHero();
 
         hero.printInfo();
 
