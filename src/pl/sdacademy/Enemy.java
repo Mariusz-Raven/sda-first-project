@@ -54,7 +54,7 @@ public class Enemy {
         System.out.println("[DEBUG] random: " + random + " attackChance: " + attackHitChance);
 
         if (isHit) {
-            System.out.println("Dealing " + C_RED + amount + C_RESET + " damage to " + name);
+            System.out.println("Dealing " + c_red(String.valueOf(amount)) + " damage to " + name);
             health -= amount;
 
             // przypadek gdy wrog zginal
@@ -62,7 +62,7 @@ public class Enemy {
                 health = 0;
 
                 isDead = true;
-                System.out.println("Enemy: " + name + " is dead!");
+                System.out.println("Enemy: " + c_red(name) + " is dead!");
             }
         } else {
             System.out.println("Enemy dodged this!");
